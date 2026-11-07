@@ -278,20 +278,23 @@ st.markdown(
         line-height: 1.4 !important;
     }
 
-    /* Sleek Loading Spinner & View Animations */
+    /* Completely Eliminate Streamlit's Stale Fade/Dimming Effect */
+    div[data-stale="true"], 
+    [data-stale="true"],
+    div[data-testid="stAppViewBlockContainer"] [data-stale="true"],
+    .stApp [data-stale="true"] {
+        opacity: 1 !important;
+        filter: none !important;
+        transition: none !important;
+    }
+
+    /* Sleek Loading Spinner */
     div[data-testid="stSpinner"] {
         color: #38BDF8 !important;
-        padding: 12px 0;
+        padding: 8px 0;
     }
     div[data-testid="stSpinner"] > div {
         border-top-color: #38BDF8 !important;
-    }
-    .view-container {
-        animation: fadeIn 0.2s ease-in-out;
-    }
-    @keyframes fadeIn {
-        from { opacity: 0; transform: translateY(3px); }
-        to { opacity: 1; transform: translateY(0); }
     }
     </style>
     """,
@@ -424,6 +427,7 @@ with st.sidebar:
     # Global Search
     st.caption("GLOBAL SHIPMENT SEARCH")
     all_shipment_ids = sorted(shipments_df["shipment_id"].unique().tolist())
+    all_shipment_ids_set = set(all_shipment_ids)
     global_search_id = st.selectbox(
         "Search Shipment ID:",
         options=["(Select a Shipment...)"] + all_shipment_ids,
@@ -474,7 +478,8 @@ if global_search_id != "(Select a Shipment...)":
     active_shipment_id = global_search_id
 elif not filtered_shipments.empty:
     # Pick a sample shipment with deviations if available for rich inspection
-    excr_shps = [s for s in filtered_shipments["shipment_id"] if s in set(excursions_df["shipment_id"])]
+    excursions_set = set(excursions_df["shipment_id"])
+    excr_shps = [s for s in filtered_shipments["shipment_id"] if s in excursions_set]
     active_shipment_id = excr_shps[0] if excr_shps else filtered_shipments["shipment_id"].iloc[0]
 
 
@@ -973,7 +978,7 @@ elif nav_selection == "🚚 Shipment Traceability":
 
     track_shp = active_shipment_id or "SHP-2026-000001"
     
-    if track_shp in set(shipments_df["shipment_id"]):
+    if track_shp in all_shipment_ids_set:
         s_data = shipments_df[shipments_df["shipment_id"] == track_shp].iloc[0]
         l_data = lots_df[lots_df["lot_id"] == s_data["lot_id"]].iloc[0]
         p_data = products_df[products_df["product_id"] == l_data["product_id"]].iloc[0]
@@ -1184,7 +1189,8 @@ elif nav_selection == "📋 Compliance Reports":
     
     rep_selector_col, _ = st.columns([2, 2])
     with rep_selector_col:
-        selected_rep_shp = st.selectbox("Select Shipment for Compliance Dossier:", options=all_shipment_ids, index=all_shipment_ids.index(rep_shp) if rep_shp in all_shipment_ids else 0)
+        default_idx = all_shipment_ids.index(rep_shp) if rep_shp in all_shipment_ids_set else 0
+        selected_rep_shp = st.selectbox("Select Shipment for Compliance Dossier:", options=all_shipment_ids, index=default_idx)
 
     if selected_rep_shp:
         s_row = summary_df[summary_df["shipment_id"] == selected_rep_shp]

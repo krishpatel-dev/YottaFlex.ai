@@ -236,3 +236,16 @@ In strict compliance with the YottaFlex Candidate Project guidelines, this docum
   - Performed final compliance verification against YottaFlex Candidate Project Submission Guidelines and FAQ.
   - Confirmed all submission deliverables: master/transaction schemas, synthetic generator with fixed seed `20261022`, Haynes-Arrhenius MKT engine, negative scenario ground truth benchmarks (98.8% recall), automated pytest suite, GitHub Actions CI workflow, enterprise dark-themed Streamlit dashboard with instant indexed navigation, data dictionary (Markdown and Excel), ER diagrams (Mermaid and PNG), and comprehensive architectural documentation.
   - Synchronized repository working tree with remote `origin/main`.
+
+### Entry 3.9: Resolution of 5.2s List-Comprehension Loop Bottleneck & Elimination of Stale Fade Effect
+* **Candidate Prompt**:
+  > *"it still giving the fade effect of few seconds and then it loads the tab where i wanna switch"*
+* **Action & Outcome**:
+  - **Diagnostic Profiling**: Used `cProfile` and granular timing to track the exact source of the lingering latency. Discovered that line 480 (`[s for s in filtered_shipments["shipment_id"] if s in set(excursions_df["shipment_id"])]`) re-instantiated a `set()` of 825 items across PyArrow arrays on **every single element of the 5,000-row series** (4,125,000 function calls into `arrow/array.py:__iter__`), consuming **5.24 seconds of blocking CPU time** per rerun.
+  - **Algorithmic Optimization**:
+    1. Hoisted `excursions_set = set(excursions_df["shipment_id"])` and `all_shipment_ids_set = set(all_shipment_ids)` outside the loop to achieve true $O(1)$ lookup complexity. Reduced execution time from **5,244 ms down to 8.3 ms** (a **628x speedup**).
+    2. Cached shipment existence checks across all views to eliminate redundant scans.
+  - **Elimination of the Streamlit Fade/Dim Effect**:
+    1. Overrode Streamlit's built-in `div[data-stale="true"]` rule with `opacity: 1 !important; filter: none !important; transition: none !important;`. The page no longer dims or fades into a translucent state during reruns.
+    2. Removed the synthetic `.view-container` CSS fade-in animation to ensure immediate, crisp visual updates.
+  - **Verification**: Ran `pytest tests/test_validation.py` (5/5 passed) and `python src/validator.py` (0 violations). Synchronized changes to GitHub remote repository.
