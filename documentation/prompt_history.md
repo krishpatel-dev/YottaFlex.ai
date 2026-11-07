@@ -84,3 +84,4 @@ In accordance with the YottaFlex Candidate Project guidelines, this document pro
     3. Shipment Tracking (Route waypoints and custody chain)
     4. Exception Management (QA disposition workflow)
     5. Compliance Reports (GxP Certificate of Compliance generator with CSV/JSON export)
+

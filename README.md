@@ -218,3 +218,4 @@ The schema in `database/schema.sql` is compatible with PostgreSQL 14+ and SQLite
 In accordance with candidate project submission requirements:
 - Full prompt history and human validation log are documented in [`documentation/prompt_history.md`](documentation/prompt_history.md).
 - Relational schema, MKT calculations, and GxP decision rules were verified against USP <1079> and WHO Annex 9 specifications.
+

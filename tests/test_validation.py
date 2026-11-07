@@ -99,3 +99,4 @@ def test_mandatory_negative_scenarios():
     # Verify high detection recall
     overall_recall = float(results["overall_summary"]["overall_recall"].replace("%", ""))
     assert overall_recall >= 95.0, f"Expected >= 95% overall recall, got {overall_recall}%"
+
