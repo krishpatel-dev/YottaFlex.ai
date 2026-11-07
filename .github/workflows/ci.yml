@@ -10,6 +10,8 @@ jobs:
   test:
     name: Run Automated Tests & Validation Suite
     runs-on: ubuntu-latest
+    env:
+      PYTHONPATH: .
 
     steps:
       - name: Checkout Repository
@@ -28,7 +30,7 @@ jobs:
 
       - name: Run Pytest Test Suite
         run: |
-          pytest tests/test_validation.py -v
+          python -m pytest tests/test_validation.py -v
 
       - name: Verify Relational Integrity (PK/FK/Enum/Dates)
         run: |

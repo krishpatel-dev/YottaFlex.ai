@@ -10,7 +10,14 @@ Verifies:
 
 import json
 import sqlite3
+import sys
 from pathlib import Path
+
+# Ensure project root is in sys.path across all platforms
+ROOT_DIR = Path(__file__).resolve().parent.parent
+if str(ROOT_DIR) not in sys.path:
+    sys.path.insert(0, str(ROOT_DIR))
+
 import pytest
 import pandas as pd
 import numpy as np
@@ -19,7 +26,7 @@ from src.business_rules import calculate_mkt, check_reading_status, detect_telem
 from src.validator import RelationalValidator
 from src.exception_detector import ExceptionDetector
 
-DATA_DIR = Path("data")
+DATA_DIR = ROOT_DIR / "data"
 
 
 def test_schema_ddl():

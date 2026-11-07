@@ -170,3 +170,20 @@ In strict compliance with the YottaFlex Candidate Project guidelines, this docum
   - Conducted continuous repository health check.
   - Verified that all 10 relational tables, the 5 negative scenario detectors, and the 5-view Streamlit dashboard remain fully operational.
   - Confirmed that automated tests, database schemas, and documentation files are 100% synchronized with the remote repository.
+
+### Entry 3.2: Continuous Prompt Logging & Readiness Check
+* **Candidate Prompt**:
+  > *"continue"*
+* **Action & Outcome**:
+  - Appended prompt interaction to ongoing tracking log per explicit candidate instruction.
+  - Re-verified that the repository working tree is clean and aligned with `origin/main`.
+  - Ready for final candidate submission review and walkthrough.
+
+### Entry 3.3: GitHub Actions CI Pytest Module Resolution Fix
+* **Candidate Prompt**:
+  > *"this error is occuring in the github [screenshot showing pytest ModuleNotFoundError: No module named 'src']"*
+* **Action & Outcome**:
+  - Diagnosed that on Linux CI environments, pytest does not include the workspace root in `sys.path` by default.
+  - Added dynamic path resolution (`sys.path.insert(0, str(ROOT_DIR))`) to `tests/test_validation.py`.
+  - Configured `env: PYTHONPATH: .` and `python -m pytest` in `.github/workflows/ci.yml`.
+  - Verified local and CI test execution, committed changes, and pushed to remote origin.
