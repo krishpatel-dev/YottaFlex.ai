@@ -187,3 +187,23 @@ In strict compliance with the YottaFlex Candidate Project guidelines, this docum
   - Added dynamic path resolution (`sys.path.insert(0, str(ROOT_DIR))`) to `tests/test_validation.py`.
   - Configured `env: PYTHONPATH: .` and `python -m pytest` in `.github/workflows/ci.yml`.
   - Verified local and CI test execution, committed changes, and pushed to remote origin.
+
+### Entry 3.4: Enterprise SaaS UI/UX Control Tower Upgrade
+* **Candidate Prompt**:
+  > *"i have shared the 5 screenshots to chatgpt asking for suggestions for the project's UI/UX upgrade, so it gave me below prompt for you to implement: I want to upgrade the UI/UX of my existing Cold Chain Compliance Platform into a premium, production-grade enterprise SaaS dashboard... [8-point requirements covering dark enterprise theme, collapsible left sidebar navigation, KPI cards, enhanced Plotly charts, shipment journey stepper, exception drawer, and fixing the white-on-white compliance report text contrast issue]"*
+* **Action & Outcome**:
+  - Refactored `dashboard/app.py` without modifying any underlying business logic, schema, or compliance rules.
+  - Implemented an enterprise dark theme (`#0B1120` / `#0F172A`) with emerald compliant (`#10B981`), crimson non-compliant (`#EF4444`), and amber investigation (`#F59E0B`) status pill badges.
+  - Migrated navigation to a collapsible left sidebar radio menu with an integrated Global Shipment Quick-Search.
+  - Enhanced the Plotly temperature monitoring view with dark template styling, shaded safe zone bands, excursion intervals, telemetry gap zones, custom hover formatting, and time range zoom presets.
+  - Implemented a visual 3-stage shipment journey stepper (Origin -> Midpoint Cross-dock -> Destination) with dwell time analysis.
+  - Redesigned the deviation management view with expandable investigation dossiers and preserved the interactive QA disposition sign-off workflow.
+  - Completely resolved the white-on-white text contrast defect on the GxP Certificate card by enforcing strict high-contrast dark typography (`#0F172A !important;`) on a clean white-parchment background.
+  - Ran the automated test suite (`python -m pytest tests/test_validation.py -v`) confirming 5/5 tests pass with zero regressions.
+
+### Entry 3.5: AI Free-Tier Account Transition
+* **Candidate Prompt**:
+  > *"i have changed my account to a different email because the previous one's free tiers tokens has finished (add this to prompt history) and now continue"*
+* **Action & Outcome**:
+  - Disclosed that the candidate transitioned to an alternative user account to proceed with project development within free-tier limits without incurring commercial API costs.
+  - Preserved continuous git commit history and full prompt audit compliance.
