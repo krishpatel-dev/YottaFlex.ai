@@ -334,11 +334,18 @@ class ComplianceEngine:
         summary_df = pd.DataFrame(summary_records)
         excursion_df = pd.DataFrame(excursion_reports)
 
-        # Update shipments.csv with calculated compliance_status
+        # Update shipments.csv with calculated compliance_status (retaining strict schema columns)
         print("[*] Updating shipments.csv with calculated compliance statuses...")
         status_map = summary_df.set_index("shipment_id")["compliance_status"].to_dict()
         self.shipments_df["compliance_status"] = self.shipments_df["shipment_id"].map(status_map)
-        self.shipments_df.to_csv(self.data_dir / "transactions" / "shipments.csv", index=False)
+        
+        schema_cols = [
+            "shipment_id", "lot_id", "packaging_id", "origin_city", "destination_city",
+            "planned_departure", "actual_departure", "planned_arrival", "actual_arrival",
+            "carrier_name", "compliance_status", "issue_type"
+        ]
+        out_shipments = self.shipments_df[[c for c in schema_cols if c in self.shipments_df.columns]]
+        out_shipments.to_csv(self.data_dir / "transactions" / "shipments.csv", index=False)
 
         # Export excursion reports and compliance summary
         excursion_path = self.data_dir / "reports" / "excursion_reports.csv"

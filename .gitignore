@@ -30,6 +30,8 @@ htmlcov/
 .mypy_cache/
 
 # Databases & local caches
+*.db
+*.sqlite
 *.sqlite3
 *.db-journal
 .idea/
