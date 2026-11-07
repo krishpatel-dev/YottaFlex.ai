@@ -115,3 +115,20 @@ ground_truth.csv         5d7a1f0981c18505d16e03b8d6b6c6ec
 ```
 Zero primary-key duplicates, zero foreign-key orphan rows, and zero date ordering violations detected across all 724,838 records.
 
+---
+
+## 7. Assumptions, Trade-offs & Limitations
+
+### 7.1 Key Domain Assumptions
+- **Realistic Transit Windows**: Trip durations are modeled between 14 and 36 hours representing actual inter-state transit times across India's primary pharmaceutical manufacturing corridors (Ahmedabad, Vadodara, Baddi, Goa, Mumbai, Hyderabad, Bengaluru).
+- **Thermodynamic Drift**: Passive packaging models assume steady thermal resistance with localized thermal peaks corresponding to cross-dock door openings and intermediate dwell events.
+- **Sampling Cadence**: Standard sampling frequency is parameterized to 10 minutes (6 readings/hour), yielding ~120 to 216 readings per shipment.
+
+### 7.2 Engineering Decisions & Trade-offs
+- **Rule-Based Engine vs. Machine Learning**: GxP Good Distribution Practice (GDP) and FDA 21 CFR Part 11 mandate 100% deterministic, reproducible, and explainable audit decisions. Black-box machine learning models cannot be qualified as primary decision engines in pharmaceutical release; thus, rule-based adjudication was chosen, while ML concepts are applied to anomaly benchmarking.
+- **Upfront Vectorized Pre-Parsing**: Parsing timestamps inside iterative loops over 724,000 rows caused significant execution delays. By pre-parsing `datetime` series upfront and pre-sorting by `(shipment_id, recorded_dt)`, evaluation runtime was reduced from ~90 seconds to under 4 seconds.
+- **Ground Truth Isolation**: To avoid data leakage, `data/ground_truth/ground_truth.csv` is maintained in a physically separate directory and is never accessed by `data_generator.py` or `compliance_engine.py`.
+
+### 7.3 Known Limitations & Future Improvements
+- **Simulated Hardware Failures**: Battery exhaustion and hardware resets are currently modeled as timestamp gaps (`SILENT_DATA_GAP`). In future iterations, explicit logger memory dump corruption markers can be introduced.
+- **Geographic GPS Integration**: Currently, waypoints are captured via discrete `route_stops`. Integrating live GPS coordinates and temperature mapping onto real-world road networks is a natural future enhancement.

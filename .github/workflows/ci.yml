@@ -1,0 +1,44 @@
+name: Cold Chain Compliance CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    name: Run Automated Tests & Validation Suite
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest Test Suite
+        run: |
+          pytest tests/test_validation.py -v
+
+      - name: Verify Relational Integrity (PK/FK/Enum/Dates)
+        run: |
+          python src/validator.py
+
+      - name: Verify Exception Detector & Negative Scenario Recall
+        run: |
+          python src/exception_detector.py
+
+      - name: Verify Seed Reproducibility
+        run: |
+          python src/data_generator.py --seed 20261022 --shipments 100 --checksums
+

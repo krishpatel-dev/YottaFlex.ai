@@ -1,5 +1,6 @@
 # 🌡️ Cold Chain Compliance Platform
 ### End-to-End Pharmaceutical & Perishable Logistics Traceability System
+[![Cold Chain Compliance CI](https://github.com/krishpatel-dev/YottaFlex.ai/actions/workflows/ci.yml/badge.svg)](https://github.com/krishpatel-dev/YottaFlex.ai/actions/workflows/ci.yml)
 > **YottaFlex AI Candidate Project Submission**  
 > **Tech Stack:** Python 3.11+ · Pandas · NumPy · Faker · SQL (PostgreSQL / SQLite) · Streamlit · Plotly · Pytest  
 > **Fixed Seed:** `20261022` (100% Deterministic Reproducibility)
@@ -148,7 +149,7 @@ python -m pytest tests/test_validation.py -v
 
 ### 7. Launch the Interactive Dashboard
 ```bash
-streamlit run dashboard/app.py
+python -m streamlit run dashboard/app.py
 ```
 Open [http://localhost:8501](http://localhost:8501) in your browser.
 

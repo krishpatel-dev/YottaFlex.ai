@@ -77,3 +77,4 @@ if __name__ == "__main__":
     parser.add_argument("--db-url", type=str, default=None, help="Database connection URL (defaults to SQLite)")
     args = parser.parse_args()
     load_database(args.db_url)
+
