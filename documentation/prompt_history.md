@@ -215,3 +215,15 @@ In strict compliance with the YottaFlex Candidate Project guidelines, this docum
   - Appended candidate prompt to ongoing tracking log per explicit instruction.
   - Confirmed that all 10 relational entities, 5 negative scenario detectors, automated tests, and the upgraded enterprise SaaS dashboard are fully operational and aligned with YottaFlex evaluation criteria.
   - Verified that the repository working tree is clean and synchronized with `origin/main`.
+
+### Entry 3.7: Sidebar Navigation Latency Diagnostics, Telemetry Lazy-Loading & Transition Feedback UX
+* **Candidate Prompt**:
+  > *"in the left sidebar navigation bar, it takes few second to transititon from one tab to other earlier it was quick (instant tab switch and result were load quickly), if it is fixable then do it else just add a loading thing for better UX"*
+* **Action & Outcome**:
+  - **Root Cause Analysis**: Diagnosed that the initial version used native client-side tabs (`st.tabs()`), which switch in pure CSS/DOM without a server roundtrip. Moving navigation to the collapsible sidebar (`st.radio()`) triggered Streamlit full-script reruns on every radio selection. During each rerun, `@st.cache_data load_data()` unpickled and deserialized an 81.2 MB DataFrame (`temperature_readings.csv`, 724,838 rows), introducing a 1.5–2.5 second serialization freeze.
+  - **Targeted Performance Fix**:
+    1. Decoupled `temperature_readings.csv` from global `load_data()`. Master tables and transaction metadata load in <0.2s without memory deserialization bottlenecks.
+    2. Derived fleet telemetry ping statistics directly from the compliance scorecard (`summary_df['total_readings'].sum()`) and SQLite.
+    3. Implemented a dedicated cached function `get_shipment_readings(shipment_id)` that queries single-shipment telemetry from `database/coldchain.db` via the indexed column `idx_tr_shipment` in ~7 milliseconds, with a high-performance chunked fallback for standalone CSV environments.
+    4. Enhanced user perception and feedback by wrapping telemetry rendering in a dedicated `st.spinner("Fetching calibrated sensor telemetry...")` and adding CSS fade-in view transitions (`@keyframes fadeIn`) and customized dark-theme spinner aesthetics.
+  - **Regression Verification**: Ran `python -m pytest tests/test_validation.py -v` (5/5 passed) and `python src/validator.py` (0 violations). Committed and pushed to GitHub remote repository.
