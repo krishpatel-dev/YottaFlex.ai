@@ -67,34 +67,34 @@ flowchart TD
     end
 
     subgraph Generator ["Synthetic Data Engine (Seed: 20261022)"]
-        GEN["Deterministic Generator<br/>(NumPy / Pandas)"]
-        GT["Isolated Ground Truth<br/>(160 Controlled Anomalies)"]
+        GEN["Deterministic Generator - NumPy / Pandas"]
+        GT["Isolated Ground Truth - 160 Controlled Anomalies"]
     end
 
     subgraph Transactions ["Operational Transaction Tables"]
-        SHP["Shipments (5,000)"]
-        RTE["Route Stops (15,000)"]
-        CUS["Custody Events (15,000)"]
-        TEL["Temperature Readings (724,838)<br/>10-minute telemetry pings"]
+        SHP["Shipments - 5,000"]
+        RTE["Route Stops - 15,000"]
+        CUS["Custody Events - 15,000"]
+        TEL["Temperature Readings - 724,838 pings at 10-min intervals"]
     end
 
-    subgraph ComplianceEngine ["GxP Compliance & Deviation Engine"]
-        MKT["Haynes-Arrhenius MKT Engine<br/>(ΔH = 83.144 kJ/mol)"]
-        EXC["Contiguous Excursion Calculator<br/>(Duration vs Allowed Tolerance)"]
-        GAP["Telemetry Gap Detector (>25 min)"]
-        CH["Custody Chain Verifier (Signatures & Gaps)"]
+    subgraph ComplianceEngine ["GxP Compliance and Deviation Engine"]
+        MKT["Haynes-Arrhenius MKT Engine"]
+        EXC["Contiguous Excursion Calculator"]
+        GAP["Telemetry Gap Detector over 25 min"]
+        CH["Custody Chain Verifier"]
     end
 
     subgraph DatabaseLayer ["Relational Storage Layer"]
-        SQL[("coldchain.db<br/>(SQLite / PostgreSQL)")<br/>ANSI SQL DDL with PK/FK/Indexes]
+        SQL[("coldchain.db - SQLite or PostgreSQL")]
     end
 
-    subgraph UI ["ColdChain OS — SaaS Control Tower"]
-        V1["📊 Executive Overview (KPIs & Charts)"]
-        V2["🌡️ Temperature Telemetry & Excursions"]
-        V3["🚚 Shipment Traceability & Custody"]
-        V4["⚠️ Deviation Management & QA Disposition"]
-        V5["📋 GxP Regulatory Compliance Dossier"]
+    subgraph UI ["ColdChain OS - SaaS Control Tower"]
+        V1["Overview - KPIs and Charts"]
+        V2["Temperature Telemetry and Excursions"]
+        V3["Shipment Traceability and Custody"]
+        V4["Deviation Management and QA Disposition"]
+        V5["GxP Regulatory Compliance Dossier"]
     end
 
     MasterData --> GEN
