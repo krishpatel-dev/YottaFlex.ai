@@ -1,0 +1,142 @@
+{
+  "evaluation_timestamp": "2026-11-07T12:15:29.203513",
+  "total_ground_truth_anomalies": 560,
+  "scenarios": {
+    "UNASSIGNED_LOGGER": {
+      "description": "Logger Not Assigned to Shipment",
+      "injected_count": 50,
+      "correctly_detected": 50,
+      "recall_rate": "100.0%",
+      "sample_verifications": [
+        {
+          "shipment_id": "SHP-2026-000039",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "UNASSIGNED_LOGGER: No calibrated logger assigned to shipment.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000066",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "UNASSIGNED_LOGGER: No calibrated logger assigned to shipment.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000157",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "UNASSIGNED_LOGGER: No calibrated logger assigned to shipment.",
+          "detected": true
+        }
+      ]
+    },
+    "POLICY_MISMATCH": {
+      "description": "Product Threshold Policy Mismatch",
+      "injected_count": 30,
+      "correctly_detected": 30,
+      "recall_rate": "100.0%",
+      "sample_verifications": [
+        {
+          "shipment_id": "SHP-2026-000364",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "POLICY_MISMATCH: Applied policy POL-009 does not match product requirement.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000399",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "POLICY_MISMATCH: Applied policy POL-009 does not match product requirement.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000408",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "POLICY_MISMATCH: Applied policy POL-009 does not match product requirement.",
+          "detected": true
+        }
+      ]
+    },
+    "SILENT_DATA_GAP": {
+      "description": "Missing Telemetry Data Gap",
+      "injected_count": 40,
+      "correctly_detected": 38,
+      "recall_rate": "95.0%",
+      "sample_verifications": [
+        {
+          "shipment_id": "SHP-2026-000008",
+          "actual_status": "INVESTIGATION",
+          "failure_reason": "MISSING_DATA_GAP: Unrecorded telemetry interval of 60 minutes detected.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000089",
+          "actual_status": "INVESTIGATION",
+          "failure_reason": "MISSING_DATA_GAP: Unrecorded telemetry interval of 70 minutes detected.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000306",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "MISSING_DATA_GAP: Unrecorded telemetry interval of 70 minutes detected.",
+          "detected": false
+        }
+      ]
+    },
+    "UNFLAGGED_CUSTODY_GAP": {
+      "description": "Unrecorded / Unsigned Custody Transfer",
+      "injected_count": 25,
+      "correctly_detected": 25,
+      "recall_rate": "100.0%",
+      "sample_verifications": [
+        {
+          "shipment_id": "SHP-2026-000395",
+          "actual_status": "INVESTIGATION",
+          "failure_reason": "UNSIGNED_CUSTODY: Event CUST-SHP-2026-000395-02 at 2026-02-12 23:15:00 lacks signature.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000467",
+          "actual_status": "INVESTIGATION",
+          "failure_reason": "UNSIGNED_CUSTODY: Event CUST-SHP-2026-000467-02 at 2026-02-18 17:05:00 lacks signature.",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000629",
+          "actual_status": "INVESTIGATION",
+          "failure_reason": "UNSIGNED_CUSTODY: Event CUST-SHP-2026-000629-02 at 2026-03-04 07:45:00 lacks signature.",
+          "detected": true
+        }
+      ]
+    },
+    "CROSS_SHIPMENT_EXCURSION": {
+      "description": "Cross-Shipment Excursion Telemetry Boundary",
+      "injected_count": 15,
+      "correctly_detected": 15,
+      "recall_rate": "100.0%",
+      "sample_verifications": [
+        {
+          "shipment_id": "SHP-2026-000619",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "TEMP_EXCURSION: HIGH_TEMP 20 min (limit: 30 min, peak: 12.12\u00b0C)",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000690",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "TEMP_EXCURSION: HIGH_TEMP 20 min (limit: 30 min, peak: -6.9\u00b0C)",
+          "detected": true
+        },
+        {
+          "shipment_id": "SHP-2026-000810",
+          "actual_status": "NON_COMPLIANT",
+          "failure_reason": "TEMP_EXCURSION: HIGH_TEMP 10 min (limit: 30 min, peak: -7.04\u00b0C)",
+          "detected": true
+        }
+      ]
+    }
+  },
+  "overall_summary": {
+    "total_edge_cases_tested": 160,
+    "total_detected": 158,
+    "overall_recall": "98.8%",
+    "benchmark_status": "PASSED"
+  }
+}

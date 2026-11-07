@@ -529,7 +529,7 @@ class ColdChainDataGenerator:
             # Injection handling:
             # 1. EC-03: SILENT_DATA_GAP -> Drop 4 to 8 consecutive readings (40 to 80 minutes missing)
             gap_indices = set()
-            if issue_type == "SILENT_DATA_GAP" and num_points > 20:
+            if issue_type == "SILENT_DATA_GAP" and num_points > 10:
                 gap_start = num_points // 2
                 gap_len = random.randint(4, 7)  # 40-70 minutes missing
                 gap_indices = set(range(gap_start, gap_start + gap_len))
@@ -657,3 +657,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

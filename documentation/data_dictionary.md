@@ -230,3 +230,4 @@ The data model captures end-to-end pharmaceutical and perishable cold-chain logi
 | `issue_type` | VARCHAR(64) | YES | None | Text | Ground truth tag | Used for benchmark evaluation. |
 | `root_cause` | TEXT | YES | None | Free text | Investigation narrative | Detailed diagnostic explanation. |
 | `created_at` | TIMESTAMP | NO | None | ISO-8601 | Record timestamp | Creation date/time. |
+

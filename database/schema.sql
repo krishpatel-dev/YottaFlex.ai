@@ -158,3 +158,4 @@ CREATE INDEX idx_custody_events_shipment ON custody_events(shipment_id);
 CREATE INDEX idx_temp_readings_shipment_time ON temperature_readings(shipment_id, recorded_at);
 CREATE INDEX idx_temp_readings_logger_time ON temperature_readings(logger_id, recorded_at);
 CREATE INDEX idx_excursion_reports_shipment ON excursion_reports(shipment_id);
+

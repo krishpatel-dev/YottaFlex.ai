@@ -1,0 +1,9 @@
+packaging_id,name,thermal_rating_hours,min_temp_c,max_temp_c,max_payload_kg,material
+PKG-001,Credo Cube VIP Shipper 12L,72.0,2.0,8.0,15.0,Vacuum Insulated Panels + TIC PCM
+PKG-002,Credo Cube Deep Frozen 28L,96.0,-25.0,-15.0,22.0,VIP + Dry Ice System
+PKG-003,AcuTemp Ultra-Cold Shipper 50L,120.0,-85.0,-60.0,35.0,VIP Vacuum Core + Liquid N2 Vapor
+PKG-004,BioTherm Insulated Box 10L,48.0,2.0,8.0,10.0,Expanded Polystyrene + Water Gel Packs
+PKG-005,PharmaTrans Active CRT Container 100L,96.0,15.0,25.0,80.0,Active Thermo-Electric Peltier Shell
+PKG-006,BioCourier Heavy Cargo 250L,72.0,2.0,8.0,180.0,Polyurethane Foam + Gel Panels
+PKG-007,AeroChill Express Frozen 15L,48.0,-25.0,-15.0,12.0,VIP + Phase 22 Frozen PCM
+PKG-008,TempStable Ambient Shield 30L,60.0,15.0,25.0,25.0,Reflective Multi-foil Air Gel

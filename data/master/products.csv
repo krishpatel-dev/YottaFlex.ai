@@ -1,0 +1,16 @@
+product_id,name,category,storage_class,manufacturer,created_at
+PROD-001,COVID-19 mRNA Vaccine,VACCINE,ULTRA_LOW,BioTech Global Corp,2025-01-15 08:00:00
+PROD-002,Rotavirus Oral Vaccine,VACCINE,REFRIGERATED,Serum Institute Bio,2025-01-25 08:00:00
+PROD-003,Hepatitis B Recombinant Vaccine,VACCINE,REFRIGERATED,Bharat Pharma Innovations,2025-02-04 08:00:00
+PROD-004,Human Recombinant Insulin 100IU,BIOLOGIC,REFRIGERATED,Novo Health Sciences,2025-02-14 08:00:00
+PROD-005,Monoclonal Antibody (Oncology),BIOLOGIC,REFRIGERATED,Roche Bio Therapeutics,2025-02-24 08:00:00
+PROD-006,Immune Globulin Intravenous (IGIV),BIOLOGIC,REFRIGERATED,Baxalta Life Sciences,2025-03-06 08:00:00
+PROD-007,Varicella Zoster Live Vaccine,VACCINE,FROZEN,Merck Bio Vaccine,2025-03-16 08:00:00
+PROD-008,MMR Triple Antigen Vaccine,VACCINE,REFRIGERATED,Sanofi Pasteur Med,2025-03-26 08:00:00
+PROD-009,Lyophilized Plasma Protein,BIOLOGIC,CONTROLLED_ROOM_TEMP,CSL Bio Formulations,2025-04-05 08:00:00
+PROD-010,Oxytocin Injection 10IU/ml,PHARMA,REFRIGERATED,Novartis Healthcare,2025-04-15 08:00:00
+PROD-011,Enoxaparin Sodium Pre-filled,PHARMA,CONTROLLED_ROOM_TEMP,Aventis Generics,2025-04-25 08:00:00
+PROD-012,Probiotic Bio-Culture Sachets,PERISHABLE_FOOD,REFRIGERATED,Yakult Bio Nutrients,2025-05-05 08:00:00
+PROD-013,Enzyme Replacement Therapy Infusion,BIOLOGIC,REFRIGERATED,Genzyme Therapeutics,2025-05-15 08:00:00
+PROD-014,Dengue Tetravalent Vaccine,VACCINE,REFRIGERATED,Takeda Pharma India,2025-05-25 08:00:00
+PROD-015,Fresh Frozen Medical Diagnostic Reagent,BIOLOGIC,FROZEN,Abbott Diagnostics,2025-06-04 08:00:00
